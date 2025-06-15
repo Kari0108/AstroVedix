@@ -1,396 +1,462 @@
-<!-- Footer Component - Fixed Version -->
-<style>
-    /* Footer-specific styles with better scoping */
-    .astrovedix-footer {
-      background: linear-gradient(135deg, #2d1653, #372179);
-      color: #faf9fa;
-      padding: 4rem 0 1rem;
-      margin-top: 5rem;
-      position: relative;
-      overflow: hidden;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - AstroVediX | Frequently Asked Questions</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    /* FAQ Specific Styles */
+    .faq-hero {
+        background: linear-gradient(135deg, #faf9fa 0%, #f9f4f6 100%);
+        position: relative;
+        overflow: hidden;
     }
 
-    .astrovedix-footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 20% 80%, rgba(226, 176, 105, 0.1), transparent),
-                  radial-gradient(circle at 80% 20%, rgba(182, 98, 129, 0.1), transparent);
-      pointer-events: none;
+    .faq-hero::before {
+        content: '🕉️';
+        position: absolute;
+        top: 50%;
+        right: 10%;
+        font-size: 15rem;
+        opacity: 0.03;
+        transform: translateY(-50%);
+        color: var(--primary-main);
+        pointer-events: none;
     }
 
-    .astrovedix-footer .footer-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      position: relative;
-      z-index: 2;
+    .faq-accordion {
+        max-width: 800px;
+        margin: 0 auto;
     }
 
-    .astrovedix-footer .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 3rem;
-      margin-bottom: 3rem;
-      /* Remove initial opacity: 0 to make content visible immediately */
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.8s ease;
+    .faq-item {
+        background: var(--white);
+        border-radius: 15px;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--shadow-light);
+        overflow: hidden;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(55, 33, 121, 0.1);
     }
 
-    .astrovedix-footer .footer-section {
-      /* Remove initial opacity: 0 to make content visible immediately */
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.6s ease;
+    .faq-item:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-medium);
     }
 
-    .astrovedix-footer .footer-section h3 {
-      font-family: 'Playfair Display', serif;
-      color: #e2b069;
-      margin-bottom: 1.5rem;
-      font-size: 1.4rem;
-      font-weight: 600;
-      position: relative;
+    .faq-question {
+        padding: 1.5rem 2rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: linear-gradient(90deg, transparent, rgba(55, 33, 121, 0.02));
+        transition: all 0.3s ease;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-family: 'Poppins', sans-serif;
     }
 
-    .astrovedix-footer .footer-section h3::after {
-      content: '';
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      width: 50px;
-      height: 2px;
-      background: linear-gradient(90deg, #e2b069, #b66281);
-      border-radius: 2px;
+    .faq-question:hover {
+        background: linear-gradient(90deg, rgba(182, 98, 129, 0.05), rgba(55, 33, 121, 0.05));
     }
 
-    .astrovedix-footer .footer-links {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .faq-question h3 {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--primary-main);
+        margin: 0;
+        flex: 1;
     }
 
-    .astrovedix-footer .footer-links li {
-      margin-bottom: 0.8rem;
+    .faq-icon {
+        font-size: 1.2rem;
+        transition: transform 0.3s ease;
+        color: var(--accent-pink);
+        margin-left: 1rem;
     }
 
-    .astrovedix-footer .footer-links a {
-      color: #faf9fa;
-      text-decoration: none;
-      font-weight: 400;
-      transition: all 0.3s ease;
-      position: relative;
-      display: inline-block;
+    .faq-item.active .faq-icon {
+        transform: rotate(45deg);
     }
 
-    .astrovedix-footer .footer-links a:hover {
-      color: #e2b069;
-      transform: translateX(5px);
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        background: var(--bg-soft);
     }
 
-    .astrovedix-footer .footer-links a::before {
-      content: '→';
-      position: absolute;
-      left: -20px;
-      opacity: 0;
-      transition: all 0.3s ease;
-      color: #e2b069;
+    .faq-answer.active {
+        max-height: 300px;
     }
 
-    .astrovedix-footer .footer-links a:hover::before {
-      opacity: 1;
-      left: -15px;
+    .faq-answer-content {
+        padding: 1.5rem 2rem 2rem;
+        color: var(--text-light);
+        line-height: 1.7;
+        font-size: 0.95rem;
     }
 
-    .astrovedix-footer .contact-info {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .astrovedix-footer .contact-info li {
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .astrovedix-footer .contact-icon {
-      width: 20px;
-      height: 20px;
-      background: linear-gradient(135deg, #e2b069, #b66281);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.8rem;
-      color: #faf9fa;
-    }
-
-    .astrovedix-footer .social-links {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .astrovedix-footer .social-link {
-      width: 45px;
-      height: 45px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #faf9fa;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .astrovedix-footer .social-link:hover {
-      background: linear-gradient(135deg, #e2b069, #b66281);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(226, 176, 105, 0.3);
-    }
-
-    .astrovedix-footer .social-link svg {
-      width: 20px;
-      height: 20px;
-    }
-
-    .astrovedix-footer .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.95rem;
-      /* Remove initial opacity: 0 to make content visible immediately */
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.6s ease 0.4s;
-    }
-
-    .astrovedix-footer .footer-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: #e2b069;
-      margin-bottom: 1rem;
-      text-decoration: none;
-      display: inline-block;
-      transition: all 0.3s ease;
-    }
-
-    .astrovedix-footer .footer-logo:hover {
-      color: #faf9fa;
-      text-shadow: 0 0 10px rgba(226, 176, 105, 0.5);
-    }
-
-    .astrovedix-footer .footer-description {
-      color: rgba(255, 255, 255, 0.8);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-      .astrovedix-footer {
-        padding: 3rem 0 1rem;
-      }
-
-      .astrovedix-footer .footer-container {
-        padding: 0 1rem;
-      }
-
-      .astrovedix-footer .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    .help-section {
+        background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+        color: var(--text-white);
+        border-radius: 20px;
+        padding: 3rem 2rem;
         text-align: center;
-      }
+        margin-top: 3rem;
+        position: relative;
+        overflow: hidden;
+    }
 
-      .astrovedix-footer .footer-section h3::after {
-        left: 50%;
-        transform: translateX(-50%);
-      }
+    .help-section::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+        background-size: 30px 30px;
+        animation: float 20s linear infinite;
+        pointer-events: none;
+    }
 
-      .astrovedix-footer .social-links {
-        justify-content: center;
-      }
+    @keyframes float {
+        0% { transform: translate(0, 0); }
+        100% { transform: translate(-30px, -30px); }
+    }
 
-      .astrovedix-footer .contact-info li {
-        justify-content: center;
-      }
+    .help-section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: var(--highlight-gold);
+    }
 
-      .astrovedix-footer .footer-links a::before {
-        display: none;
-      }
+    .help-section p {
+        font-size: 1.1rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
 
-      .astrovedix-footer .footer-links a:hover {
-        transform: none;
-      }
+    .help-btn {
+        background: var(--highlight-coral);
+        color: var(--text-white);
+        padding: 1rem 2.5rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(224, 135, 120, 0.3);
+    }
+
+    .help-btn:hover {
+        background: var(--primary-main);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(55, 33, 121, 0.4);
+    }
+
+    @media (max-width: 768px) {
+        .faq-hero::before {
+            font-size: 8rem;
+            right: 5%;
+        }
+
+        .faq-question {
+            padding: 1.2rem 1.5rem;
+        }
+
+        .faq-question h3 {
+            font-size: 1rem;
+        }
+
+        .faq-answer-content {
+            padding: 1.2rem 1.5rem 1.5rem;
+        }
+
+        .help-section {
+            padding: 2rem 1.5rem;
+        }
+
+        .help-section h2 {
+            font-size: 1.5rem;
+        }
     }
 
     @media (max-width: 480px) {
-      .astrovedix-footer {
-        padding: 2rem 0 1rem;
-      }
+        .faq-question {
+            padding: 1rem;
+        }
 
-      .astrovedix-footer .footer-container {
-        padding: 0 0.5rem;
-      }
+        .faq-answer-content {
+            padding: 1rem;
+        }
 
-      .astrovedix-footer .footer-logo {
-        font-size: 1.5rem;
-      }
-
-      .astrovedix-footer .footer-section h3 {
-        font-size: 1.2rem;
-      }
-
-      .astrovedix-footer .social-link {
-        width: 40px;
-        height: 40px;
-      }
-
-      .astrovedix-footer .social-link svg {
-        width: 18px;
-        height: 18px;
-      }
+        .faq-hero::before {
+            font-size: 6rem;
+        }
     }
-</style>
+  </style>
+</head>
+<body>
+<!-- Navigation -->
+<div id="navbar-placeholder"></div>
 
-<footer class="astrovedix-footer">
-    <div class="footer-container">
-        <div class="footer-content">
-            <!-- Brand Section -->
-            <div class="footer-section">
-                <a href="index.html" class="footer-logo">AstroVediX</a>
-                <p class="footer-description">
-                    Where ancient wisdom meets modern insights. Discover your cosmic blueprint through authentic Vedic astrology.
-                </p>
-                <div class="social-links">
-                    <a href="https://instagram.com/astrovedix" class="social-link" aria-label="Instagram">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                        </svg>
-                    </a>
-                    <a href="https://youtube.com/@astrovedix" class="social-link" aria-label="YouTube">
-                        <svg viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="expertise.html">Expertise</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="book.html">Book Session</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact Information -->
-            <div class="footer-section">
-                <h3>Contact Info</h3>
-                <ul class="contact-info">
-                    <li>
-                        <div class="contact-icon">@</div>
-                        <a href="mailto:ask.astrovedix@gmail.com">ask.astrovedix@gmail.com</a>
-                    </li>
-                    <li>
-                        <div class="contact-icon">📞</div>
-                        <a href="tel:+917665270799">+91-76652-70799</a>
-                    </li>
-                    <li>
-                        <div class="contact-icon">📍</div>
-                        <span>Bathinda, Punjab</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2025 AstroVediX. Astrology meets science.</p>
-        </div>
+<!-- Hero Section - UPDATED to match index.html structure with enhanced animations and effects -->
+<section class="hero">
+  <div class="stars" id="stars"></div>
+  <!-- Floating spiritual icons with enhanced animations -->
+  <div class="floating-icon" style="top: 20%; left: 10%; animation-delay: 0s">
+    <i class="fas fa-moon" style="font-size: 2rem; color: rgba(255,255,255,0.3)"></i>
+  </div>
+  <div class="floating-icon" style="top: 30%; right: 15%; animation-delay: 2s">
+    <i class="fas fa-star" style="font-size: 1.5rem; color: rgba(255,255,255,0.4)"></i>
+  </div>
+  <div class="floating-icon" style="bottom: 30%; left: 20%; animation-delay: 4s">
+    <i class="fas fa-sun" style="font-size: 2.5rem; color: rgba(255,255,255,0.2)"></i>
+  </div>
+  <div class="floating-icon" style="top: 60%; right: 25%; animation-delay: 1s">
+    <i class="fas fa-om" style="font-size: 1.8rem; color: rgba(255,255,255,0.25)"></i>
+  </div>
+  <div class="floating-icon" style="bottom: 20%; right: 10%; animation-delay: 3s">
+    <i class="fas fa-yin-yang" style="font-size: 1.6rem; color: rgba(255,255,255,0.3)"></i>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <h1 class="scale-in">Frequently Asked Questions</h1>
+      <p class="fade-in-text">Preparing for your session starts with clarity. Find answers to common questions about our services.</p>
+      <a href="book.html" class="btn btn-primary">Book Your Session</a>
     </div>
-</footer>
+  </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="section">
+  <div class="container">
+    <div class="faq-accordion">
+      <div class="faq-item scroll-reveal">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <h3>What details do I need to provide for a consultation?</h3>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Please share your full birth details (date, time, and place of birth) for astrological sessions. For Tarot or Chakra readings, simply bring your questions or focus areas.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <h3>What if I don't know my exact birth time?</h3>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            While having your exact birth time helps provide the most accurate astrological insights, don't worry if you don't know it. We can still work with an approximate time or use other techniques to help narrow it down during the consultation. Please share as much information as you have, and we'll guide you accordingly.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <h3>Can I ask follow-up questions after my reading?</h3>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Absolutely! We encourage ongoing dialogue. You can reach out via email or WhatsApp for clarifications or additional guidance after your session.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <h3>Are sessions conducted online or in-person?</h3>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Currently, all sessions are held online through Zoom, Google Meet, or WhatsApp Video to offer you convenience and accessibility, no matter where you are.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <h3>How do I prepare for my session?</h3>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            Find a quiet space, have your questions ready, and keep an open mind. For astrology, ensure you have accurate birth details handy.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item scroll-reveal">
+        <button class="faq-question" onclick="toggleFAQ(this)">
+          <h3>What payment methods do you accept?</h3>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-content">
+            We accept payments via UPI and NEFT/IMPS bank transfers. Payment can be made during the booking process or as mutually agreed.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Help Section -->
+    <div class="help-section scroll-reveal">
+      <h2>Need more help?</h2>
+      <p>Still unsure about something? We're just a message away.</p>
+      <a href="contact.html" class="help-btn">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<div id="footer-placeholder"></div>
 
 <script>
-    // Simplified footer animation that works with dynamic loading
-    (function() {
-        console.log('Footer script executing...');
+  // Load external navbar and footer
+  async function loadExternalHTML() {
+      try {
+          // Load navbar
+          const navbarResponse = await fetch('navbar.html');
+          if (navbarResponse.ok) {
+              const navbarHTML = await navbarResponse.text();
+              document.getElementById('navbar-placeholder').innerHTML = navbarHTML;
+          } else {
+              console.warn('Could not load navbar.html');
+          }
 
-        // Wait for DOM to be ready
-        function initFooter() {
-            const footer = document.querySelector('.astrovedix-footer');
-            const footerContent = document.querySelector('.astrovedix-footer .footer-content');
-            const footerSections = document.querySelectorAll('.astrovedix-footer .footer-section');
-            const footerBottom = document.querySelector('.astrovedix-footer .footer-bottom');
+          // Load footer
+          const footerResponse = await fetch('footer.html');
+          if (footerResponse.ok) {
+              const footerHTML = await footerResponse.text();
+              document.getElementById('footer-placeholder').innerHTML = footerHTML;
+          } else {
+              console.warn('Could not load footer.html');
+          }
+      } catch (error) {
+          console.error('Error loading external HTML:', error);
+      }
+  }
 
-            console.log('Footer elements found:', {
-                footer: !!footer,
-                footerContent: !!footerContent,
-                footerSections: footerSections.length,
-                footerBottom: !!footerBottom
-            });
+  // Enhanced star creation function - ADDED for hero section animation
+  function createStars() {
+      const starsContainer = document.getElementById('stars');
+      if (!starsContainer) return;
 
-            if (!footer) {
-                console.log('Footer not found, retrying...');
-                setTimeout(initFooter, 100);
-                return;
-            }
+      const numberOfStars = 100;
+      starsContainer.innerHTML = ''; // Clear existing stars
 
-            // Add revealed class to make content visible with animation
-            if (footerContent) {
-                footerContent.classList.add('revealed');
-            }
+      for (let i = 0; i < numberOfStars; i++) {
+          const star = document.createElement('div');
+          star.className = 'star';
+          star.style.left = Math.random() * 100 + '%';
+          star.style.top = Math.random() * 100 + '%';
+          star.style.animationDelay = Math.random() * 3 + 's';
+          star.style.animationDuration = (Math.random() * 2 + 1) + 's';
+          starsContainer.appendChild(star);
+      }
+  }
 
-            footerSections.forEach((section, index) => {
-                setTimeout(() => {
-                    section.classList.add('revealed');
-                }, index * 100);
-            });
+  // FAQ Toggle Functionality
+  function toggleFAQ(element) {
+      const faqItem = element.parentElement;
+      const answer = faqItem.querySelector('.faq-answer');
+      const icon = element.querySelector('.faq-icon');
 
-            if (footerBottom) {
-                setTimeout(() => {
-                    footerBottom.classList.add('revealed');
-                }, 300);
-            }
+      // Close all other FAQ items
+      document.querySelectorAll('.faq-item').forEach(item => {
+          if (item !== faqItem) {
+              item.classList.remove('active');
+              item.querySelector('.faq-answer').classList.remove('active');
+              item.querySelector('.faq-icon').textContent = '+';
+          }
+      });
 
-            // Add hover effects
-            document.querySelectorAll('.astrovedix-footer .footer-links a').forEach(link => {
-                link.addEventListener('mouseenter', function() {
-                    this.style.paddingLeft = '20px';
-                });
+      // Toggle current FAQ item
+      faqItem.classList.toggle('active');
+      answer.classList.toggle('active');
 
-                link.addEventListener('mouseleave', function() {
-                    this.style.paddingLeft = '0';
-                });
-            });
+      if (faqItem.classList.contains('active')) {
+          icon.textContent = '×';
+      } else {
+          icon.textContent = '+';
+      }
+  }
 
-            console.log('Footer initialized successfully');
-        }
+  // Scroll reveal animation
+  function revealOnScroll() {
+      const reveals = document.querySelectorAll('.scroll-reveal');
 
-        // Initialize immediately or when DOM is ready
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initFooter);
-        } else {
-            initFooter();
-        }
+      reveals.forEach(element => {
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
 
-        // Also try after a short delay as fallback
-        setTimeout(initFooter, 500);
-    })();
+          if (elementTop < window.innerHeight - elementVisible) {
+              element.classList.add('revealed');
+          }
+      });
+  }
+
+  // Navbar scroll effect
+  function handleNavbarScroll() {
+      const navbar = document.querySelector('#navbar-placeholder .navbar') || document.getElementById('navbar');
+      if (navbar) {
+          if (window.scrollY > 50) {
+              navbar.classList.add('scrolled');
+          } else {
+              navbar.classList.remove('scrolled');
+          }
+      }
+  }
+
+  // Event listeners
+  window.addEventListener('scroll', () => {
+      revealOnScroll();
+      handleNavbarScroll();
+  });
+
+  // Initial reveal check
+  document.addEventListener('DOMContentLoaded', async () => {
+      // Load external HTML first
+      await loadExternalHTML();
+
+      // Create animated stars for hero section - ADDED
+      createStars();
+
+      revealOnScroll();
+
+      // Add staggered animation delay to FAQ items
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach((item, index) => {
+          item.style.animationDelay = `${index * 0.1}s`;
+      });
+  });
+
+  // Smooth scrolling for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute('href'));
+          if (target) {
+              target.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+              });
+          }
+      });
+  });
 </script>
+</body>
+</html>
