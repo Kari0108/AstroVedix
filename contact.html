@@ -11,106 +11,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <style>
         /* Enhanced Contact Page Styles */
-        .contact-hero {
-            background: linear-gradient(135deg, #faf9fa 0%, #f9f4f6 50%, #faf9fa 100%);
-            position: relative;
-            overflow: hidden;
-            padding: 120px 0 80px;
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            top: -10%;
-            left: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(55, 33, 121, 0.06), rgba(182, 98, 129, 0.03), transparent);
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-            filter: blur(1px);
-        }
-
-        .contact-hero::after {
-            content: '';
-            position: absolute;
-            bottom: -15%;
-            right: -15%;
-            width: 350px;
-            height: 350px;
-            background: radial-gradient(circle, rgba(226, 176, 105, 0.08), rgba(55, 33, 121, 0.03), transparent);
-            border-radius: 50%;
-            animation: float 12s ease-in-out infinite reverse;
-            filter: blur(1px);
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px) translateX(0px) scale(1);
-                opacity: 0.6;
-            }
-            33% {
-                transform: translateY(-30px) translateX(20px) scale(1.1);
-                opacity: 0.8;
-            }
-            66% {
-                transform: translateY(20px) translateX(-15px) scale(0.9);
-                opacity: 0.7;
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            text-align: center;
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-main), var(--accent-purple), var(--highlight-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-
-        @keyframes shimmer {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
-            color: var(--text-light);
-            font-weight: 400;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-        }
-
-        .hero-decorative {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 600px;
-            height: 600px;
-            opacity: 0.02;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="%23372179"/><circle cx="25" cy="25" r="1" fill="%23b66281"/><circle cx="75" cy="25" r="1" fill="%23e2b069"/><circle cx="25" cy="75" r="1" fill="%23c18abc"/><circle cx="75" cy="75" r="1" fill="%23372179"/></svg>');
-            background-size: 50px 50px;
-            animation: rotate 45s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
         .contact-section {
             padding: 80px 0;
             background: var(--white);
@@ -422,11 +322,6 @@
 
         /* Enhanced Mobile Responsiveness */
         @media (max-width: 768px) {
-            .contact-hero {
-                padding: 100px 0 60px;
-                min-height: 60vh;
-            }
-
             .contact-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
@@ -461,10 +356,6 @@
         }
 
         @media (max-width: 480px) {
-            .contact-hero {
-                padding: 80px 0 40px;
-            }
-
             .contact-card {
                 padding: 2rem 1rem;
             }
@@ -525,18 +416,25 @@
 <!-- Navigation (External Load) -->
 <div id="navbar-container"></div>
 
-<!-- Hero Section -->
-<section class="contact-hero">
-    <div class="hero-decorative"></div>
+<!-- UPDATED: Hero Section - Now matches index.html structure with 60vh height for contact page -->
+<!-- Changed from custom contact-hero to standard hero section for consistency with index.html -->
+<section class="hero" style="min-height: 60vh;">
+    <div class="stars" id="stars"></div>
+    <!-- Floating spiritual icons matching index.html -->
+    <div class="floating-icon" style="top: 20%; left: 10%; animation-delay: 0s">
+        <i class="fas fa-moon" style="font-size: 2rem; color: rgba(255,255,255,0.3)"></i>
+    </div>
+    <div class="floating-icon" style="top: 30%; right: 15%; animation-delay: 2s">
+        <i class="fas fa-star" style="font-size: 1.5rem; color: rgba(255,255,255,0.4)"></i>
+    </div>
+    <div class="floating-icon" style="bottom: 30%; left: 20%; animation-delay: 4s">
+        <i class="fas fa-sun" style="font-size: 2.5rem; color: rgba(255,255,255,0.2)"></i>
+    </div>
     <div class="container">
-        <div class="hero-content">
-            <h1 class="hero-title">Connect with AstroVediX</h1>
-            <p class="hero-subtitle">Clarity, compassion, and cosmic precision guide every interaction. Let the stars illuminate your path to wisdom.</p>
-            <div style="margin-top: 2rem;">
-                <i class="fas fa-star" style="color: var(--highlight-gold); font-size: 1.5rem; margin: 0 0.5rem; animation: twinkle 2s ease-in-out infinite;"></i>
-                <i class="fas fa-moon" style="color: var(--accent-purple); font-size: 1.3rem; margin: 0 0.5rem; animation: twinkle 2.5s ease-in-out infinite;"></i>
-                <i class="fas fa-sun" style="color: var(--accent-pink); font-size: 1.4rem; margin: 0 0.5rem; animation: twinkle 3s ease-in-out infinite;"></i>
-            </div>
+        <div class="hero-content fade-in-text">
+            <h1>Connect with AstroVediX</h1>
+            <p>Clarity, compassion, and cosmic precision guide every interaction. Let the stars illuminate your path to wisdom.</p>
+            <a href="book.html" class="btn btn-primary">Book Your Session</a>
         </div>
     </div>
 </section>
@@ -650,6 +548,25 @@
 <div id="footer-container"></div>
 
 <script>
+    // UPDATED: Stars generation script to match index.html functionality
+    // Generate animated stars for hero background exactly like index.html
+    function generateStars() {
+        const starsContainer = document.getElementById('stars');
+        if (!starsContainer) return;
+
+        const numberOfStars = 50;
+
+        for (let i = 0; i < numberOfStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+    }
+
     // Page loader
     window.addEventListener('load', function() {
         setTimeout(() => {
@@ -676,23 +593,26 @@
     loadComponent('navbar-container', 'navbar.html');
     loadComponent('footer-container', 'footer.html');
 
-    // Enhanced scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-
-    // Observe all contact cards
+    // UPDATED: Initialize stars generation on DOM content loaded to match index.html
     document.addEventListener('DOMContentLoaded', function() {
+        generateStars();
+
+        // Enhanced scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all contact cards
         const cards = document.querySelectorAll('.contact-card');
         cards.forEach((card, index) => {
             card.style.opacity = '0';
@@ -728,13 +648,13 @@
         }
     });
 
-    // Enhanced parallax effect for hero section
+    // Enhanced parallax effect for hero section matching index.html
     window.addEventListener('scroll', function() {
         const scrolled = window.pageYOffset;
-        const heroElements = document.querySelectorAll('.contact-hero::before, .contact-hero::after');
+        const hero = document.querySelector('.hero');
 
-        if (scrolled < window.innerHeight) {
-            document.querySelector('.contact-hero').style.transform = `translateY(${scrolled * 0.5}px)`;
+        if (hero && scrolled < window.innerHeight) {
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
         }
     });
 
