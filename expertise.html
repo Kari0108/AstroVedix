@@ -9,107 +9,15 @@
     <!-- Stylesheets -->
     <link rel="stylesheet" href="style.css">
 
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
-        /* Expertise Hero Section */
-        .expertise-hero {
-            background: linear-gradient(135deg, #f9f4f6 0%, #faf9fa 100%);
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .expertise-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                radial-gradient(circle at 25% 25%, rgba(55, 33, 121, 0.06), transparent 60%),
-                radial-gradient(circle at 75% 75%, rgba(182, 98, 129, 0.05), transparent 60%),
-                radial-gradient(circle at 50% 50%, rgba(226, 176, 105, 0.04), transparent 70%);
-            pointer-events: none;
-        }
-
-        /* Spiritual Yantra Background */
-        .yantra-bg {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
-            opacity: 0.03;
-            background: radial-gradient(circle, transparent 30%, rgba(126, 55, 126, 0.1) 50%, transparent 70%);
-            border-radius: 50%;
-            animation: slowRotate 60s linear infinite;
-        }
-
-        .yantra-bg::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: 200px;
-            border: 2px solid rgba(126, 55, 126, 0.1);
-            border-radius: 50%;
-        }
-
-        .yantra-bg::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(45deg);
-            width: 140px;
-            height: 140px;
-            border: 1px solid rgba(226, 176, 105, 0.1);
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-        }
-
-        @keyframes slowRotate {
-            from { transform: translate(-50%, -50%) rotate(0deg); }
-            to { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
-        .expertise-hero-content {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-        }
-
-        .expertise-hero h1 {
-            font-size: 3.8rem;
-            color: var(--primary-dark);
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary-dark), var(--accent-purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-        }
-
-        .expertise-hero .subtitle {
-            font-size: 1.4rem;
-            color: var(--text-light);
-            font-weight: 300;
-            margin-bottom: 2rem;
-            opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInUp 1.2s ease 0.8s forwards;
-        }
-
         /* Core Expertise Section */
         .core-expertise {
             padding: 8rem 0;
@@ -432,14 +340,6 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
-            .expertise-hero h1 {
-                font-size: 2.8rem;
-            }
-
-            .expertise-hero .subtitle {
-                font-size: 1.2rem;
-            }
-
             .expertise-block {
                 flex-direction: column;
                 gap: 1.5rem;
@@ -477,10 +377,6 @@
         }
 
         @media (max-width: 480px) {
-            .expertise-hero h1 {
-                font-size: 2.2rem;
-            }
-
             .expertise-block {
                 padding: 1.5rem;
             }
@@ -504,17 +400,28 @@
 <!-- Navigation will be loaded here -->
 <div id="navbar-placeholder"></div>
 
-<!-- Expertise Hero Section -->
-<section class="expertise-hero">
-    <div class="yantra-bg"></div>
-
+<!-- UPDATED: Hero Section - Now perfectly matches index.html structure with 60vh height -->
+<section class="hero">
+    <div class="stars" id="stars"></div>
+    <!-- Floating spiritual icons -->
+    <div class="floating-icon" style="top: 20%; left: 10%; animation-delay: 0s">
+        <i class="fas fa-moon" style="font-size: 2rem; color: rgba(255,255,255,0.3)"></i>
+    </div>
+    <div class="floating-icon" style="top: 30%; right: 15%; animation-delay: 2s">
+        <i class="fas fa-star" style="font-size: 1.5rem; color: rgba(255,255,255,0.4)"></i>
+    </div>
+    <div class="floating-icon" style="bottom: 30%; left: 20%; animation-delay: 4s">
+        <i class="fas fa-sun" style="font-size: 2.5rem; color: rgba(255,255,255,0.2)"></i>
+    </div>
     <div class="container">
-        <div class="expertise-hero-content">
-            <h1 class="scale-in">Our Expertise</h1>
-            <p class="subtitle">Ancient Systems That Illuminate Your Path</p>
+        <div class="hero-content fade-in-text">
+            <h1>Our Expertise</h1>
+            <p>Ancient Systems That Illuminate Your Path</p>
+            <a href="book.html" class="btn btn-primary">Book Your Session</a>
         </div>
     </div>
 </section>
+<!-- END UPDATED HERO SECTION -->
 
 <!-- Core Expertise Section -->
 <section class="core-expertise">
@@ -629,6 +536,25 @@
 <div id="footer-placeholder"></div>
 
 <script>
+    // UPDATED: Initialize stars animation when page loads - matches main landing page perfectly
+    document.addEventListener('DOMContentLoaded', function() {
+        // Create animated stars that match index.html exactly
+        const starsContainer = document.getElementById('stars');
+        if (starsContainer) {
+            // Add twinkling stars with same animation as index.html
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 4 + 's';
+                star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+    });
+    // END UPDATED SCRIPT SECTION
+
     // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
 
@@ -754,7 +680,7 @@
     // Add parallax effect to subtitle
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
-        const subtitle = document.querySelector('.subtitle');
+        const subtitle = document.querySelector('.hero-content p');
         if (subtitle && scrolled < window.innerHeight) {
             subtitle.style.transform = `translateY(${scrolled * 0.3}px)`;
         }
