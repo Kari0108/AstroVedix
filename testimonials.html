@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials - AstroVediX</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles for testimonials page */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(55, 33, 121, 0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #b66281, #372179, #e2b069);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+
+        .testimonial-card:hover::before {
+            transform: translateX(0);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 40px rgba(55, 33, 121, 0.2);
+        }
+
+        .quote-icon {
+            font-size: 2rem;
+            color: #e2b069;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #b66281, #372179);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .author-info h4 {
+            margin: 0;
+            color: #372179;
+            font-size: 1.1rem;
+        }
+
+        .author-location {
+            color: #666;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .rating {
+            display: flex;
+            gap: 0.2rem;
+            margin-top: 0.5rem;
+        }
+
+        .rating .star {
+            color: #e2b069;
+            font-size: 1rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #372179, #2d1653);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 30% 20%, rgba(226, 176, 105, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(182, 98, 129, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-text {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #e2b069, #e08778);
+            color: white;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(226, 176, 105, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(226, 176, 105, 0.4);
+            background: linear-gradient(135deg, #f0c179, #e08778);
+        }
+
+        .stats-section {
+            background: white;
+            padding: 4rem 0;
+            margin: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #372179, #b66281);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            display: block;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .testimonial-card {
+                padding: 2rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .scroll-reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+<!-- Navigation -->
+<div id="navbar-placeholder"></div>
+
+<!-- UPDATED: Hero Section - Changed to match index.html structure with 60vh height -->
+<section class="hero">
+    <div class="stars" id="stars"></div>
+
+    <!-- Floating spiritual icons -->
+    <div class="floating-icon" style="top: 20%; left: 10%; animation-delay: 0s">
+        <i class="fas fa-moon" style="font-size: 2rem; color: rgb(255,255,255,0.3)"></i>
+    </div>
+    <div class="floating-icon" style="top: 30%; right: 15%; animation-delay: 2s">
+        <i class="fas fa-star" style="font-size: 1.5rem; color: rgb(255,255,255,0.4)"></i>
+    </div>
+    <div class="floating-icon" style="bottom: 30%; left: 20%; animation-delay: 4s">
+        <i class="fas fa-sun" style="font-size: 2.5rem; color: rgb(255,255,255,0.2)"></i>
+    </div>
+
+    <div class="container">
+        <div class="hero-content fade-in-text">
+            <h1>Testimonials</h1>
+            <p>What Our Clients Say About Their Transformative Journey</p>
+            <a href="book.html" class="btn btn-primary">Book Your Session</a>
+        </div>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid scroll-reveal">
+            <div class="stat-item">
+                <span class="stat-number">2500+</span>
+                <p class="stat-label">Happy Clients</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <p class="stat-label">Satisfaction Rate</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">15+</span>
+                <p class="stat-label">Years Experience</p>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5000+</span>
+                <p class="stat-label">Readings Completed</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="section">
+    <div class="container">
+        <div class="testimonials-grid">
+            <div class="testimonial-card scroll-reveal">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="testimonial-text">
+                    "The accuracy of my birth chart reading was absolutely incredible. Every detail resonated with my life experiences. The guidance I received has helped me make better decisions in my career and relationships."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">P.S</div>
+                    <div class="author-info">
+                        <h4>Priya Sharma</h4>
+                        <p class="author-location">Mumbai, Maharashtra</p>
+                        <div class="rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card scroll-reveal">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="testimonial-text">
+                    "After struggling with career confusion for years, the consultation provided clarity I never expected. The remedies suggested have brought positive changes in my professional life. Highly recommended!"
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">R.K</div>
+                    <div class="author-info">
+                        <h4>Rajesh Kumar</h4>
+                        <p class="author-location">Delhi, NCR</p>
+                        <div class="rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card scroll-reveal">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="testimonial-text">
+                    "The relationship compatibility reading saved my marriage. Understanding our planetary influences helped us work through our differences with compassion and wisdom."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">A.M</div>
+                    <div class="author-info">
+                        <h4>Anita Mehta</h4>
+                        <p class="author-location">Pune, Maharashtra</p>
+                        <div class="rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card scroll-reveal">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="testimonial-text">
+                    "The yearly predictions were spot-on. I was warned about challenges in my business and took precautions that saved me from significant losses. The guidance was invaluable."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">S.G</div>
+                    <div class="author-info">
+                        <h4>Suresh Gupta</h4>
+                        <p class="author-location">Jaipur, Rajasthan</p>
+                        <div class="rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card scroll-reveal">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="testimonial-text">
+                    "As a skeptic, I was amazed by how accurate the reading was. The astrologer explained everything in simple terms and gave practical remedies that actually worked in my life."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">V.R</div>
+                    <div class="author-info">
+                        <h4>Vikram Reddy</h4>
+                        <p class="author-location">Hyderabad, Telangana</p>
+                        <div class="rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card scroll-reveal">
+                <div class="quote-icon">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <p class="testimonial-text">
+                    "The health astrology consultation helped me understand recurring health issues from a cosmic perspective. Following the suggested lifestyle changes has improved my well-being significantly."
+                </p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">M.I</div>
+                    <div class="author-info">
+                        <h4>Meera Iyer</h4>
+                        <p class="author-location">Chennai, Tamil Nadu</p>
+                        <div class="rating">
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                            <i class="fas fa-star star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Start Your Transformative Experience Today</h2>
+            <p class="cta-text">Book a consultation and see the magic for yourself</p>
+            <a href="book.html" class="cta-button">
+                Book Now <i class="fas fa-arrow-right" style="margin-left: 0.5rem;"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div id="footer-placeholder"></div>
+
+<script>
+    // Load external HTML files
+    function loadHTML() {
+        // Load navbar
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('navbar-placeholder').innerHTML = data;
+                // Initialize navbar functionality after loading
+                initializeNavbar();
+            })
+            .catch(error => console.log('Error loading navbar:', error));
+
+        // Load footer
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer-placeholder').innerHTML = data;
+            })
+            .catch(error => console.log('Error loading footer:', error));
+    }
+
+    // Initialize navbar functionality
+    function initializeNavbar() {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            // Navbar scroll effect
+            function handleNavbarScroll() {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            }
+
+            window.addEventListener('scroll', handleNavbarScroll);
+            handleNavbarScroll(); // Initial check
+        }
+    }
+
+    // UPDATED: Added stars animation function to match index.html
+    function createStars() {
+        const starsContainer = document.getElementById('stars');
+        if (!starsContainer) return;
+
+        const numberOfStars = 100;
+
+        for (let i = 0; i < numberOfStars; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            star.style.animationDuration = (Math.random() * 2 + 2) + 's';
+            starsContainer.appendChild(star);
+        }
+    }
+
+    // Scroll reveal animation
+    function revealOnScroll() {
+        const reveals = document.querySelectorAll('.scroll-reveal');
+
+        reveals.forEach(reveal => {
+            const windowHeight = window.innerHeight;
+            const elementTop = reveal.getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                reveal.classList.add('revealed');
+            }
+        });
+    }
+
+    // Event listeners
+    window.addEventListener('scroll', revealOnScroll);
+
+    // Initial setup
+    document.addEventListener('DOMContentLoaded', () => {
+        loadHTML();
+        createStars(); // UPDATED: Added stars creation
+        revealOnScroll();
+    });
+
+    // Smooth scrolling for anchor links
+    document.addEventListener('click', function(e) {
+        if (e.target.matches('a[href^="#"]')) {
+            e.preventDefault();
+            const target = document.querySelector(e.target.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>
