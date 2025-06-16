@@ -1,297 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AstroVediX Navbar</title>
-  <style>
-    /* Navbar-specific styles with proper scoping */
-    .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        background: rgba(55, 33, 121, 0.95);
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-        padding: 1rem 0;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 20px rgba(55, 33, 121, 0.3);
-    }
-
-    .navbar.scrolled {
-        background: rgba(55, 33, 121, 0.98);
-        padding: 0.5rem 0;
-    }
-
-    .nav-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-    }
-
-    .nav-logo {
-        font-family: 'Playfair Display', serif;
-        font-size: 1.8rem;
-        font-weight: 700;
-        color: #faf9fa;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        z-index: 1001;
-    }
-
-    .nav-logo:hover {
-        color: #e2b069;
-    }
-
-    .nav-menu {
-        display: flex;
-        list-style: none;
-        gap: 2rem;
-        margin: 0;
-        padding: 0;
-        align-items: center;
-    }
-
-    .nav-item {
-        position: relative;
-    }
-
-    .nav-link {
-        color: #faf9fa;
-        font-weight: 500;
-        text-decoration: none;
-        padding: 0.5rem 0;
-        transition: all 0.3s ease;
-        position: relative;
-    }
-
-    .nav-link:hover {
-        color: #e2b069;
-    }
-
-    .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: #e2b069;
-        transition: width 0.3s ease;
-    }
-
-    .nav-link:hover::after {
-        width: 100%;
-    }
-
-    /* Mobile menu toggle */
-    .nav-toggle {
-        display: none;
-        flex-direction: column;
-        cursor: pointer;
-        padding: 0.5rem;
-        z-index: 1001;
-    }
-
-    .hamburger {
-        width: 25px;
-        height: 3px;
-        background: #faf9fa;
-        margin: 3px 0;
-        transition: all 0.3s ease;
-        border-radius: 2px;
-    }
-
-    .nav-toggle.active .hamburger:nth-child(1) {
-        transform: rotate(45deg) translate(6px, 6px);
-        background: #e2b069;
-    }
-
-    .nav-toggle.active .hamburger:nth-child(2) {
-        opacity: 0;
-    }
-
-    .nav-toggle.active .hamburger:nth-child(3) {
-        transform: rotate(-45deg) translate(6px, -6px);
-        background: #e2b069;
-    }
-
-    /* CTA Button */
-    .nav-cta {
-        background: linear-gradient(135deg, #e2b069, #b66281);
-        color: #faf9fa !important;
-        padding: 0.6rem 1.5rem;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 10px rgba(226, 176, 105, 0.3);
-    }
-
-    .nav-cta:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 20px rgba(226, 176, 105, 0.4);
-        color: #faf9fa !important;
-    }
-
-    .nav-cta::after {
-        display: none;
-    }
-
-    /* Mobile responsiveness */
-    @media (max-width: 768px) {
-        .nav-toggle {
-            display: flex;
-        }
-
-        .nav-menu {
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AstroVediX Navbar</title>
+    <style>
+        /* Navbar-specific styles with proper scoping */
+        .navbar {
             position: fixed;
-            left: -100%;
-            top: 70px;
-            flex-direction: column;
-            background: rgba(55, 33, 121, 0.98);
-            backdrop-filter: blur(15px);
-            width: 100%;
-            text-align: center;
-            transition: left 0.3s ease;
-            box-shadow: 0 10px 27px rgba(55, 33, 121, 0.5);
-            padding: 2rem 0;
-            gap: 1rem;
-        }
-
-        .nav-menu.active {
+            top: 0;
             left: 0;
+            right: 0;
+            background: rgba(55, 33, 121, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 20px rgb(55, 33, 121, 0.3);
         }
 
-        .nav-item {
-            margin: 0.5rem 0;
-        }
-
-        .nav-link {
-            font-size: 1.1rem;
-            padding: 1rem;
-            display: block;
-        }
-
-        .nav-cta {
-            margin-top: 1rem;
-            display: inline-block;
+        .navbar.scrolled {
+            background: rgba(55, 33, 121, 0.98);
+            padding: 0.5rem 0;
         }
 
         .nav-container {
-            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .nav-logo {
-            font-size: 1.5rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .navbar {
-            padding: 0.8rem 0;
+            z-index: 1001;
         }
 
-        .nav-logo {
-            font-size: 1.3rem;
+
+
+        .nav-logo img {
+            width: 120px;   /* or whatever you want */
+            height: 60px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-logo img:hover {
+            transform: scale(1.1);
         }
 
         .nav-menu {
-            top: 60px;
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+            align-items: center;
         }
-    }
 
-    /* Ensure navbar doesn't interfere with page content */
-    .navbar * {
-        box-sizing: border-box;
-    }
+        .nav-item {
+            position: relative;
+        }
 
-    /* Prevent navbar from affecting body/html styles */
-    .navbar-component {
-        all: initial;
-        font-family: inherit;
-    }
-  </style>
+        .nav-link {
+            color: #faf9fa;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #e2b069;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #e2b069;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger {
+            width: 25px;
+            height: 3px;
+            background: #faf9fa;
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-toggle.active .hamburger:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+            background: #e2b069;
+        }
+
+        .nav-toggle.active .hamburger:nth-child(2) {
+            opacity: 0;
+        }
+
+        .nav-toggle.active .hamburger:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+            background: #e2b069;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #e2b069, #b66281);
+            color: #faf9fa !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgb(226, 176, 105, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgb(226, 176, 105, 0.4);
+            color: #faf9fa !important;
+        }
+
+        .nav-cta::after {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-menu {
+                position: fixed;
+                left: -100%;
+                top: 70px;
+                flex-direction: column;
+                background: rgba(55, 33, 121, 0.98);
+                backdrop-filter: blur(15px);
+                width: 100%;
+                text-align: center;
+                transition: left 0.3s ease;
+                box-shadow: 0 10px 27px rgb(55, 33, 121, 0.5);
+                padding: 2rem 0;
+                gap: 1rem;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-item {
+                margin: 0.5rem 0;
+            }
+
+            .nav-link {
+                font-size: 1.1rem;
+                padding: 1rem;
+                display: block;
+            }
+
+            .nav-cta {
+                margin-top: 1rem;
+                display: inline-block;
+            }
+
+            .nav-container {
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0.8rem 0;
+            }
+
+            .nav-menu {
+                top: 60px;
+            }
+        }
+
+        .navbar * {
+            box-sizing: border-box;
+        }
+
+        .navbar-component {
+            all: initial;
+            font-family: inherit;
+        }
+    </style>
 </head>
 <body class="navbar-component">
 <nav class="navbar">
-  <div class="nav-container">
-    <a href="index.html" class="nav-logo">AstroVediX</a>
+    <div class="nav-container">
+        <a href="index.html" class="nav-logo"><img src="logoo.png" alt="AstroVediX Logo"></a>
 
-    <ul class="nav-menu">
-      <li class="nav-item">
-        <a href="index.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item">
-        <a href="about.html" class="nav-link">About</a>
-      </li>
-      <li class="nav-item">
-        <a href="expertise.html" class="nav-link">Expertise</a>
-      </li>
-      <li class="nav-item">
-        <a href="services.html" class="nav-link">Services</a>
-      </li>
-      <li class="nav-item">
-        <a href="contact.html" class="nav-link">Contact</a>
-      </li>
-      <li class="nav-item">
-        <a href="book.html" class="nav-cta">Book Session</a>
-      </li>
-    </ul>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="about.html" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="expertise.html" class="nav-link">Expertise</a>
+            </li>
+            <li class="nav-item">
+                <a href="services.html" class="nav-link">Services</a>
+            </li>
+            <li class="nav-item">
+                <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a href="book.html" class="nav-cta">Book Session</a>
+            </li>
+        </ul>
 
-    <div class="nav-toggle">
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
-      <span class="hamburger"></span>
+        <div class="nav-toggle">
+            <span class="hamburger"></span>
+            <span class="hamburger"></span>
+            <span class="hamburger"></span>
+        </div>
     </div>
-  </div>
 </nav>
 
 <script>
-  // Mobile menu toggle functionality
-  const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.nav-menu');
+    // Mobile menu toggle functionality
+    const navToggle = document.querySelector('.nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
 
-  if (navToggle && navMenu) {
-    navToggle.addEventListener('click', function() {
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (navToggle && navMenu) {
+      navToggle.addEventListener('click', function() {
+          navToggle.classList.toggle('active');
+          navMenu.classList.toggle('active');
+      });
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
-    });
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll('.nav-link, .nav-cta').forEach(link => {
+          link.addEventListener('click', () => {
+              navToggle.classList.remove('active');
+              navMenu.classList.remove('active');
+          });
+      });
 
-    // Close mobile menu when clicking outside
-    document.addEventListener('click', function(event) {
-        const isClickInsideNav = navToggle.contains(event.target) || navMenu.contains(event.target);
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(event) {
+          const isClickInsideNav = navToggle.contains(event.target) ||
+                                     navMenu.contains(event.target);
 
-        if (!isClickInsideNav && navMenu.classList.contains('active')) {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
+          if (!isClickInsideNav && navMenu.classList.contains('active')) {
+              navToggle.classList.remove('active');
+              navMenu.classList.remove('active');
+          }
+      });
+    }
+
+    // Add scroll effect for navbar
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         }
     });
-  }
-
-  // Add scroll effect for navbar
-  window.addEventListener('scroll', function() {
-      const navbar = document.querySelector('.navbar');
-      if (navbar) {
-          if (window.scrollY > 100) {
-              navbar.classList.add('scrolled');
-          } else {
-              navbar.classList.remove('scrolled');
-          }
-      }
-  });
 </script>
 </body>
 </html>
