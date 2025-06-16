@@ -14,14 +14,14 @@
             background: rgba(55, 33, 121, 0.95);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 1rem 0;
+            padding: 0.5rem 0;
             transition: all 0.3s ease;
             box-shadow: 0 2px 20px rgb(55, 33, 121, 0.3);
         }
 
         .navbar.scrolled {
             background: rgba(55, 33, 121, 0.98);
-            padding: 0.5rem 0;
+            padding: 0.3rem 0;
         }
 
         .nav-container {
@@ -31,22 +31,26 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            height: 70px;
         }
 
         .nav-logo {
             z-index: 1001;
+            display: flex;
+            align-items: center;
+            height: 100%;
         }
 
-
-
         .nav-logo img {
-            width: 120px;   /* or whatever you want */
             height: 60px;
+            width: auto;
+            max-width: 200px;
+            object-fit: contain;
             transition: transform 0.3s ease;
         }
 
         .nav-logo img:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .nav-menu {
@@ -147,10 +151,18 @@
                 display: flex;
             }
 
+            .nav-container {
+                height: 60px;
+            }
+
+            .nav-logo img {
+                height: 50px;
+            }
+
             .nav-menu {
                 position: fixed;
                 left: -100%;
-                top: 70px;
+                top: 60px;
                 flex-direction: column;
                 background: rgba(55, 33, 121, 0.98);
                 backdrop-filter: blur(15px);
@@ -188,11 +200,19 @@
 
         @media (max-width: 480px) {
             .navbar {
-                padding: 0.8rem 0;
+                padding: 0.3rem 0;
+            }
+
+            .nav-container {
+                height: 50px;
+            }
+
+            .nav-logo img {
+                height: 40px;
             }
 
             .nav-menu {
-                top: 60px;
+                top: 50px;
             }
         }
 
