@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The AstroVediX Difference — Where Astrology Meets Science</title>
+  <meta name="description" content="Discover how AstroVediX uniquely blends ancient Vedic astrology with modern scientific principles for guidance that resonates with both heart and mind.">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Additional styles for difference page */
+    .difference-hero {
+        background: linear-gradient(135deg, #f9f4f6 0%, #faf9fa 100%);
+        min-height: 60vh;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .difference-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+            radial-gradient(circle at 20% 30%, rgba(55, 33, 121, 0.08), transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(182, 98, 129, 0.06), transparent 50%),
+            radial-gradient(circle at 40% 80%, rgba(226, 176, 105, 0.05), transparent 50%);
+        pointer-events: none;
+    }
+
+    /* Floating cosmic elements */
+    .cosmic-element {
+        position: absolute;
+        opacity: 0;
+        animation: floatCosmic 8s infinite ease-in-out;
+    }
+
+    .cosmic-element:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+    .cosmic-element:nth-child(2) { top: 70%; left: 80%; animation-delay: 2s; }
+    .cosmic-element:nth-child(3) { top: 40%; left: 85%; animation-delay: 4s; }
+    .cosmic-element:nth-child(4) { top: 85%; left: 15%; animation-delay: 6s; }
+
+    @keyframes floatCosmic {
+        0%, 100% { opacity: 0; transform: translateY(0px) rotate(0deg) scale(0.8); }
+        50% { opacity: 0.6; transform: translateY(-30px) rotate(180deg) scale(1.2); }
+    }
+
+    /* Main content section */
+    .difference-content {
+        padding: 6rem 0;
+        background: var(--white);
+    }
+
+    .content-header {
+        text-align: center;
+        margin-bottom: 4rem;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeInUp 1s ease 0.3s forwards;
+    }
+
+    .content-header h1 {
+        font-size: 3rem;
+        color: var(--primary-dark);
+        margin-bottom: 1.5rem;
+        background: linear-gradient(135deg, var(--primary-dark), var(--accent-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .content-header .intro-text {
+        font-size: 1.2rem;
+        color: var(--text-light);
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+
+    /* Topic cards grid */
+    .topics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 3rem;
+        margin-top: 4rem;
+    }
+
+    .topic-card {
+        background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(249,244,246,0.95) 100%);
+        backdrop-filter: blur(10px);
+        border-radius: 25px;
+        padding: 3rem;
+        box-shadow:
+            0 8px 32px rgba(55, 33, 121, 0.1),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    .topic-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-pink), var(--accent-purple), var(--highlight-gold));
+        transform: translateX(-100%);
+        transition: transform 0.6s ease;
+    }
+
+    .topic-card::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(226, 176, 105, 0.1), transparent 70%);
+        transform: scale(0);
+        transition: transform 0.6s ease;
+        pointer-events: none;
+    }
+
+    .topic-card:hover::before {
+        transform: translateX(0);
+    }
+
+    .topic-card:hover::after {
+        transform: scale(1);
+    }
+
+    .topic-card:hover {
+        transform: translateY(-15px);
+        box-shadow:
+            0 25px 50px rgba(55, 33, 121, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    }
+
+    .topic-icon {
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+        display: block;
+        text-align: center;
+        filter: drop-shadow(0 4px 8px rgba(55, 33, 121, 0.2));
+        transition: transform 0.3s ease;
+    }
+
+    .topic-card:hover .topic-icon {
+        transform: scale(1.1) rotate(5deg);
+    }
+
+    .topic-title {
+        font-size: 1.5rem;
+        color: var(--primary-dark);
+        margin-bottom: 1.5rem;
+        font-family: 'Playfair Display', serif;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .topic-description {
+        color: var(--text-light);
+        line-height: 1.8;
+        font-size: 1rem;
+        text-align: justify;
+    }
+
+    /* Why this matters section */
+    .why-matters-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, var(--bg-soft), var(--bg-light));
+        position: relative;
+    }
+
+    .why-matters-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: radial-gradient(circle at 50% 50%, rgba(55, 33, 121, 0.03), transparent 70%);
+        pointer-events: none;
+    }
+
+    .why-matters-content {
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .why-matters-title {
+        font-size: 2.5rem;
+        color: var(--primary-dark);
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, var(--primary-dark), var(--accent-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .benefits-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+    }
+
+    .benefit-item {
+        background: var(--white);
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(55, 33, 121, 0.08);
+        transition: all 0.3s ease;
+        text-align: left;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .benefit-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 30px rgba(55, 33, 121, 0.12);
+    }
+
+    .benefit-item h4 {
+        color: var(--primary-dark);
+        margin-bottom: 1rem;
+        font-size: 1.2rem;
+    }
+
+    .benefit-item p {
+        color: var(--text-light);
+        line-height: 1.7;
+        margin: 0;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        background: linear-gradient(135deg, var(--primary-main), var(--primary-light));
+        padding: 5rem 0;
+        text-align: center;
+        color: var(--text-white);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background:
+            radial-gradient(circle at 20% 20%, rgba(255,255,255,0.1), transparent 50%),
+            radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1), transparent 50%);
+        pointer-events: none;
+    }
+
+    .cta-content {
+        position: relative;
+        z-index: 2;
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    .cta-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-white);
+    }
+
+    .cta-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 2.5rem;
+        opacity: 0.9;
+        font-weight: 300;
+    }
+
+    .cta-btn {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--highlight-coral), #ff7a6e);
+        color: white;
+        padding: 1.2rem 3rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        box-shadow: 0 6px 20px rgba(224, 135, 120, 0.4);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--accent-purple), var(--primary-dark));
+        transition: left 0.4s ease;
+        z-index: -1;
+    }
+
+    .cta-btn:hover::before {
+        left: 0;
+    }
+
+    .cta-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(224, 135, 120, 0.5);
+        color: white;
+    }
+
+    /* Scroll reveal animation */
+    .reveal {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .topic-card.reveal {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
+    .why-matters-content.reveal {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
+    .benefit-item.reveal {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
+    .cta-content.reveal {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+        .content-header h1 {
+            font-size: 2.5rem;
+        }
+
+        .topics-grid {
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        .topic-card {
+            padding: 2rem;
+        }
+
+        .benefits-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .cta-title {
+            font-size: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .content-header h1 {
+            font-size: 2rem;
+        }
+
+        .topic-card {
+            padding: 1.5rem;
+        }
+
+        .topic-icon {
+            font-size: 2.5rem;
+        }
+
+        .cta-btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+        }
+    }
+  </style>
+</head>
+<body>
+<!-- Navigation will be loaded here -->
+<div id="navbar-placeholder"></div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="stars" id="stars"></div>
+  <!-- Floating cosmic elements -->
+  <div class="cosmic-element" style="top: 20%; left: 10%; animation-delay: 0s">
+    <i class="fas fa-atom" style="font-size: 2rem; color: rgba(255,255,255,0.3)"></i>
+  </div>
+  <div class="cosmic-element" style="top: 30%; right: 15%; animation-delay: 2s">
+    <i class="fas fa-dna" style="font-size: 1.5rem; color: rgba(255,255,255,0.4)"></i>
+  </div>
+  <div class="cosmic-element" style="bottom: 30%; left: 20%; animation-delay: 4s">
+    <i class="fas fa-infinity" style="font-size: 2.5rem; color: rgba(255,255,255,0.2)"></i>
+  </div>
+  <div class="cosmic-element" style="top: 60%; right: 25%; animation-delay: 6s">
+    <i class="fas fa-wave-square" style="font-size: 2rem; color: rgba(255,255,255,0.3)"></i>
+  </div>
+  <div class="container">
+    <div class="hero-content fade-in-text">
+      <h1>The AstroVediX Difference</h1>
+      <p>Where Astrology Meets Science</p>
+      <a href="book.html" class="btn btn-primary">Experience the Difference</a>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content Section -->
+<section class="difference-content">
+  <div class="container">
+    <div class="content-header">
+      <h1>ASTROLOGY MEETS SCIENCE — THE ASTROVEDIX DIFFERENCE</h1>
+      <p class="intro-text">At AstroVediX, we uniquely blend the ancient art of Vedic astrology with the rigor and clarity of modern science. Founded by Vipul Shukla, a chemical engineer with a passion for cosmic wisdom, our approach offers guidance that resonates with both the heart and the rational mind.</p>
+    </div>
+
+    <div class="topics-grid">
+
+      <div class="topic-card">
+        <span class="topic-icon">🌍</span>
+        <h3 class="topic-title">The Science of Planetary Energy</h3>
+        <p class="topic-description">Planets emit subtle electromagnetic fields and vibrations that subtly influence our bio-energetic system. Modern science recognizes that electromagnetic fields affect biological processes—our cosmic environment is no different. By decoding planetary positions and movements, we reveal how these energies shape moods, behaviors, and life events.</p>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">🔊</span>
+        <h3 class="topic-title">The Power of Vibration and Sound</h3>
+        <p class="topic-description">Mantras and chants are scientifically proven sound frequencies that stimulate brain wave entrainment, promoting calmness, focus, and emotional balance. These sacred vibrations act as a form of sound therapy, helping to rewire neural circuits and support mental wellbeing.</p>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">💎</span>
+        <h3 class="topic-title">Logical Reasoning Behind Remedies</h3>
+        <p class="topic-description">Every recommended remedy—from wearing specific gemstones to mantra recitation and meditation—is grounded in the science of resonance and energy alignment. Gemstones vibrate at frequencies that correspond with planetary energies, helping to balance imbalances in the wearer's energy field. Meditation and mantra practices influence brain chemistry by reducing cortisol and increasing serotonin, offering measurable health benefits.</p>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">🧠</span>
+        <h3 class="topic-title">Neuro-Astrology: Brain, Behaviour & Cosmic Influence</h3>
+        <p class="topic-description">Recent neuroscience studies suggest that external cosmic rhythms can synchronize with internal brain rhythms. This connection explains why astrological timings often correlate with human behavior cycles. Our consultations explore these links, offering insights backed by neurological science.</p>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">⚛️</span>
+        <h3 class="topic-title">Quantum Perspectives in Astrology</h3>
+        <p class="topic-description">Quantum physics reveals that everything in the universe is interconnected through energy and information exchange. Astrology, at its core, reflects this quantum connectivity—where the macrocosm (planets) and microcosm (individual) interact continuously. We bring this quantum understanding into our readings, bridging the mystical with measurable phenomena.</p>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">📊</span>
+        <h3 class="topic-title">Data-Driven Astrology: Precision & Validation</h3>
+        <p class="topic-description">Using Vipul's engineering expertise, AstroVediX integrates precise calculations and data validation with traditional astrological methods. This fusion enhances accuracy, helping you trust the guidance with confidence. Our approach isn't about vague predictions but practical insights backed by measurable patterns.</p>
+      </div>
+
+      <div class="topic-card">
+        <span class="topic-icon">🧘</span>
+        <h3 class="topic-title">Mind-Body-Energy Integration</h3>
+        <p class="topic-description">We recognize that true transformation requires a holistic approach. Astrology combined with Chakra healing, energy balancing, and meditation offers a scientifically-supported path to aligning mind, body, and spirit—resulting in lasting wellbeing and clarity.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Why This Matters Section -->
+<section class="why-matters-section">
+  <div class="container">
+    <div class="why-matters-content">
+      <h2 class="why-matters-title">Why This Matters to You</h2>
+      <p style="font-size: 1.2rem; color: var(--text-light); margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">With AstroVediX, you don't just get ancient wisdom or scientific theory—you get a harmonious blend that respects your intellect while nurturing your soul. This unique integration empowers you to:</p>
+
+      <div class="benefits-grid">
+        <div class="benefit-item">
+          <h4>🔍 Decode Complex Life Patterns</h4>
+          <p>Gain clarity on recurring themes and challenges in your life through our scientific approach to astrological analysis.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h4>🎯 Make Informed Decisions</h4>
+          <p>Base your important life choices on logical cosmic insights that combine intuitive wisdom with rational analysis.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h4>🌟 Experience Backed Remedies</h4>
+          <p>Benefit from remedies that have both spiritual depth and scientific backing, ensuring holistic transformation.</p>
+        </div>
+
+        <div class="benefit-item">
+          <h4>🧭 Navigate Your Life Purpose</h4>
+          <p>Discover and align with your soul's mission through our unique blend of ancient wisdom and modern understanding.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2 class="cta-title">Experience the Perfect Balance</h2>
+      <p class="cta-subtitle">Where ancient wisdom meets modern science for transformative guidance</p>
+      <a href="book.html" class="cta-btn">Book Your Scientific Astrology Session →</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer will be loaded here -->
+<div id="footer-placeholder"></div>
+
+<script>
+  // Initialize when DOM is loaded
+  document.addEventListener('DOMContentLoaded', function() {
+      // Create animated stars that match index.html exactly
+      initializeStars();
+
+      // Load navbar and footer
+      loadComponent('navbar-placeholder', 'navbar.html');
+      loadComponent('footer-placeholder', 'footer.html');
+
+      // Initialize scroll animations
+      initializeScrollAnimations();
+
+      // Initialize navbar scroll effects
+      initializeNavbarScrollEffect();
+
+      // Initialize parallax effects
+      initializeParallaxEffects();
+  });
+
+  // Create animated stars
+  function initializeStars() {
+      const starsContainer = document.getElementById('stars');
+      if (starsContainer) {
+          // Clear existing stars
+          starsContainer.innerHTML = '';
+
+          // Add twinkling stars with same animation as index.html
+          for (let i = 0; i < 50; i++) {
+              const star = document.createElement('div');
+              star.className = 'star';
+              star.style.left = Math.random() * 100 + '%';
+              star.style.top = Math.random() * 100 + '%';
+              star.style.animationDelay = Math.random() * 4 + 's';
+              star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+              starsContainer.appendChild(star);
+          }
+      }
+  }
+
+  // Load navbar and footer components
+  function loadComponent(elementId, fileName) {
+      fetch(fileName)
+          .then(response => response.text())
+          .then(data => {
+              document.getElementById(elementId).innerHTML = data;
+          })
+          .catch(error => {
+              console.log('Component loading failed:', error);
+              // Fallback content for navbar
+              if (elementId === 'navbar-placeholder') {
+                  document.getElementById(elementId).innerHTML = `
+                      <nav class="navbar">
+                          <div class="nav-container">
+                              <a href="index.html" class="nav-logo">AstroVediX</a>
+                              <ul class="nav-menu">
+                                  <li><a href="index.html" class="nav-link">Home</a></li>
+                                  <li><a href="services.html" class="nav-link">Services</a></li>
+                                  <li><a href="difference.html" class="nav-link active">Our Difference</a></li>
+                                  <li><a href="expertise.html" class="nav-link">Expertise</a></li>
+                                  <li><a href="about.html" class="nav-link">About</a></li>
+                                  <li><a href="book.html" class="nav-link">Book Now</a></li>
+                              </ul>
+                          </div>
+                      </nav>
+                  `;
+              }
+          });
+  }
+
+  // Initialize scroll animations using Intersection Observer
+  function initializeScrollAnimations() {
+      const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+              if (entry.isIntersecting) {
+                  // Stagger animations for topic cards
+                  if (entry.target.classList.contains('topic-card')) {
+                      setTimeout(() => {
+                          entry.target.classList.add('reveal');
+                      }, index * 150); // Staggered animation
+                  }
+                  // Animate other sections
+                  else if (entry.target.classList.contains('why-matters-content') ||
+                           entry.target.classList.contains('benefit-item') ||
+                           entry.target.classList.contains('cta-content')) {
+                      setTimeout(() => {
+                          entry.target.classList.add('reveal');
+                      }, index * 100);
+                  }
+
+                  // Stop observing once animated
+                  observer.unobserve(entry.target);
+              }
+          });
+      }, observerOptions);
+
+      // Observe all topic cards
+      const topicCards = document.querySelectorAll('.topic-card');
+      topicCards.forEach(card => observer.observe(card));
+
+      // Observe why matters content
+      const whyMattersContent = document.querySelector('.why-matters-content');
+      if (whyMattersContent) {
+          observer.observe(whyMattersContent);
+      }
+
+      // Observe benefit items
+      const benefitItems = document.querySelectorAll('.benefit-item');
+      benefitItems.forEach(item => observer.observe(item));
+
+      // Observe CTA content
+      const ctaContent = document.querySelector('.cta-content');
+      if (ctaContent) {
+          observer.observe(ctaContent);
+      }
+  }
+
+  // Navbar scroll effect
+  function initializeNavbarScrollEffect() {
+      window.addEventListener('scroll', function() {
+          const navbar = document.querySelector('.navbar');
+          if (navbar) {
+              if (window.scrollY > 50) {
+                  navbar.classList.add('scrolled');
+              } else {
+                  navbar.classList.remove('scrolled');
+              }
+          }
+      });
+  }
+
+  // Parallax effects
+  function initializeParallaxEffects() {
+      window.addEventListener('scroll', () => {
+          const scrolled = window.pageYOffset;
+          const heroSubtitle = document.querySelector('.hero-content p');
+
+          // Apply parallax to hero subtitle
+          if (heroSubtitle && scrolled < window.innerHeight) {
+              heroSubtitle.style.transform = `translateY(${scrolled * 0.3}px)`;
+          }
+
+          // Apply parallax to cosmic elements
+          const cosmicElements = document.querySelectorAll('.cosmic-element');
+          cosmicElements.forEach((element, index) => {
+              if (scrolled < window.innerHeight) {
+                  const speed = 0.2 + (index * 0.1);
+                  element.style.transform = `translateY(${scrolled * speed}px)`;
+              }
+          });
+      });
+  }
+
+  // Smooth scroll behavior
+  document.documentElement.style.scrollBehavior = 'smooth';
+
+  // Add click handlers for smooth scrolling to sections
+  document.addEventListener('click', function(e) {
+      if (e.target.matches('a[href^="#"]')) {
+          e.preventDefault();
+          const targetId = e.target.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+              targetElement.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+              });
+          }
+      }
+  });
+
+  // Performance optimization: Throttle scroll events
+  let scrollTimeout;
+  window.addEventListener('scroll', function() {
+      if (scrollTimeout) {
+          clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = setTimeout(function() {
+          // Any additional scroll-based functionality can go here
+      }, 16); // ~60fps
+  });
+
+  // Enhanced component loading with retry mechanism
+  function loadComponentWithRetry(elementId, fileName, retries = 3) {
+      fetch(fileName)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+              }
+              return response.text();
+          })
+          .then(data => {
+              const element = document.getElementById(elementId);
+              if (element) {
+                  element.innerHTML = data;
+              }
+          })
+          .catch(error => {
+              console.log(`Component loading failed for ${fileName}:`, error);
+              if (retries > 0) {
+                  setTimeout(() => {
+                      loadComponentWithRetry(elementId, fileName, retries - 1);
+                  }, 1000);
+              }
+          });
+  }
+</script>
+</body>
+</html>
